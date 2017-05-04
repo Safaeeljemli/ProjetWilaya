@@ -3,6 +3,8 @@ package controller;
 import bean.User;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
+import controller.util.SessionUtil;
+import java.io.IOException;
 import service.UserFacade;
 
 import java.io.Serializable;
@@ -19,12 +21,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("userController")
 @SessionScoped
 public class UserController implements Serializable {
 
-    @EJB
-    private service.UserFacade ejbFacade;
+
+    @EJB private service.UserFacade ejbFacade;
     private List<User> items = null;
     private User selected;
 
@@ -32,6 +35,9 @@ public class UserController implements Serializable {
     }
 
     public User getSelected() {
+        if(selected==null){
+            selected=new User();
+        }
         return selected;
     }
 
@@ -81,6 +87,55 @@ public class UserController implements Serializable {
         return items;
     }
 
+    
+    //methodes
+    
+    public void connecte() {
+        int res = ejbFacade.seConnnecter(getSelected());
+        switch (res) {
+            
+            case (-5):
+                System.out.println("login not valid");
+                JsfUtil.addErrorMessage("Veuilliez saisir votre login");
+                break;
+            case (-4):
+                System.out.println("Login n'existe pas");
+                JsfUtil.addErrorMessage("Login n'existe pas");
+                break;
+            case (-1):
+                System.out.println("user connecter");
+                JsfUtil.addErrorMessage("User deja connecter veuiller vous deconnecter des autre device ou notifier votre admin ");
+                break;
+            case (-2):
+                System.out.println("utilisateur blque");
+                JsfUtil.addErrorMessage("Utilisateur est bloqué");
+                break;
+            case (-3):
+                System.out.println("mot de passe incorrecte");
+                JsfUtil.addErrorMessage("Mot de passe incorrect");
+                break;
+            default:
+                try {
+                    SessionUtil.redirect("/ProjetWilaya/home/accueil");
+                    System.out.println(SessionUtil.getConnectedUser());
+                } catch (IOException ex) {
+                    Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+        setSelected(null);
+
+    }
+
+    public void seDeConnnecter() throws IOException {
+        System.out.println("seDeConnnecter");
+        ejbFacade.seDeConnnecter();
+        SessionUtil.redirect("/eTaxeCommunal/faces/Login.xhtml");
+    }
+    
+    
+    //fin
+    
+    
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -121,7 +176,7 @@ public class UserController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = User.class)
+    @FacesConverter(forClass=User.class)
     public static class UserControllerConverter implements Converter {
 
         @Override
@@ -129,7 +184,7 @@ public class UserController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            UserController controller = (UserController) facesContext.getApplication().getELResolver().
+            UserController controller = (UserController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "userController");
             return controller.getUser(getKey(value));
         }

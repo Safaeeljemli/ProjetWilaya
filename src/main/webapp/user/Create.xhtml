@@ -14,8 +14,18 @@
                     <p:panelGrid columns="2" rendered="#{userController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateUserLabel_login}" for="login" />
                         <p:inputText id="login" value="#{userController.selected.login}" title="#{bundle.CreateUserTitle_login}" />
-                        <p:outputLabel value="#{bundle.CreateUserLabel_paswrd}" for="paswrd" />
-                        <p:inputText id="paswrd" value="#{userController.selected.paswrd}" title="#{bundle.CreateUserTitle_paswrd}" />
+                        <p:outputLabel value="#{bundle.CreateUserLabel_passwrd}" for="passwrd" />
+                        <p:inputText id="passwrd" value="#{userController.selected.passwrd}" title="#{bundle.CreateUserTitle_passwrd}" />
+                        <p:outputLabel value="#{bundle.CreateUserLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{userController.selected.nom}" title="#{bundle.CreateUserTitle_nom}" />
+                        <p:outputLabel value="#{bundle.CreateUserLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{userController.selected.prenom}" title="#{bundle.CreateUserTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.CreateUserLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{userController.selected.email}" title="#{bundle.CreateUserTitle_email}" />
+                        <p:outputLabel value="#{bundle.CreateUserLabel_tel}" for="tel" />
+                        <p:inputText id="tel" value="#{userController.selected.tel}" title="#{bundle.CreateUserTitle_tel}" />
+                        <p:outputLabel value="#{bundle.CreateUserLabel_nbrCnx}" for="nbrCnx" />
+                        <p:inputText id="nbrCnx" value="#{userController.selected.nbrCnx}" title="#{bundle.CreateUserTitle_nbrCnx}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{userController.create}" value="#{bundle.Save}" update="display,:UserListForm:datalist,:growl" oncomplete="handleSubmit(args,'UserCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="UserCreateDialog.hide()"/>

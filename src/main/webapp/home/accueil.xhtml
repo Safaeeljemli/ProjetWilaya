@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Accueil</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <link rel="icon" type="image/png" href="image/maroc.png" />
+
+    </h:head>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link  src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"/>
+    <link src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/>
+    <link href="resources/css/grayscale.min.css" rel="stylesheet"/>
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <style >
+        body {
+            color:black;
+            background-color:white;
+            background-image:url(image/268848.jpg);
+        }
+
+        .imagelink {
+            overflow:hidden;
+            -webkit-border-radius:50px;
+            -moz-border-radius:50px;
+            border-radius:50px;
+            width:90px;
+            height:90px;
+        }
+
+        img {
+            width:20px;
+            margin:20px;
+        }
+
+    </style>
+    <h:body>
+        <div class="container">
+            <h:form>
+                <nav class="navbar navbar-default navbar-fixed-top">
+
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <img src="image/maroc.png" alt="Submit this form" name="sub_but" style="width:30px;height:30px" />
+                        </div>
+                        <a class="navbar-brand" href="#">Projet Wilaya</a>
+                        <ul class="nav navbar-nav">
+                            <!--<li><p:commandLink class="active" action="/user/Home" value="Home"></p:commandLink></li>-->
+<!--                            <li><p:commandLink action="#{userController.seDeConnnecter()}" value="Logout"></p:commandLink></li>-->
+                        </ul>
+                    </div>
+                </nav>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+
+
+                <center>
+                    <font size="20" style="color: #5F9EA0 !important">Wilaya</font> 
+                </center>
+                <br/>
+                <center>
+                   
+                    <a href="/ProjetWilaya/faces/stagiaire/List.xhtml">
+                        <img src="image/searchStagiaire.jpg" alt="Submit this form" title="recherche stagiaire" name="sub_but" style="width:130px;height:130px" />
+                    </a>
+                    <a href="/ProjetWilaya/stagiaire/List.xhtml">
+                        <h:graphicImage class="imagelink" id="imag1" value="/image/chart.png" title="chart" style="width:130px;height:130px" ></h:graphicImage>
+                    </a>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                    <a href="/ProjetWilaya/stagiaire/List.xhtml">
+                        <h:graphicImage class="imagelink" id="imag2" value="image/map.png" title="map" style="width:130px;height:130px" ></h:graphicImage>
+                    </a>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                    <a href="/ProjetWilaya/stagiaire/List.xhtml">
+                        <h:graphicImage class="imagelink" id="imag3" value="image/redevable1.png" title="redevable" style="width:130px;height:130px" ></h:graphicImage>
+                    </a>
+                    <br/>
+                    <a href="/ProjetWilaya/stagiaire/List.xhtml">
+                        <h:graphicImage class="imagelink" id="imag4" value="image/users.png" title="utilisateur" style="width:130px;height:130px" ></h:graphicImage>
+                    </a>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                    <a href="/ProjetWilaya/stagiaire/List.xhtml">
+                        <h:graphicImage class="imagelink" id="imag5" value="image/taxe.png" title="taxes" style="width:130px;height:130px" ></h:graphicImage>
+                    </a>
+                </center>
+            </h:form>
+        </div>
+    </h:body>
+
+
+
+
+</html>

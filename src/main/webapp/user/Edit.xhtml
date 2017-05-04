@@ -14,8 +14,18 @@
                     <p:panelGrid columns="2" rendered="#{userController.selected != null}">
                         <p:outputLabel value="#{bundle.EditUserLabel_login}" for="login" />
                         <p:inputText id="login" value="#{userController.selected.login}" title="#{bundle.EditUserTitle_login}" />
-                        <p:outputLabel value="#{bundle.EditUserLabel_paswrd}" for="paswrd" />
-                        <p:inputText id="paswrd" value="#{userController.selected.paswrd}" title="#{bundle.EditUserTitle_paswrd}" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_passwrd}" for="passwrd" />
+                        <p:inputText id="passwrd" value="#{userController.selected.passwrd}" title="#{bundle.EditUserTitle_passwrd}" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{userController.selected.nom}" title="#{bundle.EditUserTitle_nom}" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{userController.selected.prenom}" title="#{bundle.EditUserTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{userController.selected.email}" title="#{bundle.EditUserTitle_email}" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_tel}" for="tel" />
+                        <p:inputText id="tel" value="#{userController.selected.tel}" title="#{bundle.EditUserTitle_tel}" />
+                        <p:outputLabel value="#{bundle.EditUserLabel_nbrCnx}" for="nbrCnx" />
+                        <p:inputText id="nbrCnx" value="#{userController.selected.nbrCnx}" title="#{bundle.EditUserTitle_nbrCnx}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{userController.update}" value="#{bundle.Save}" update="display,:UserListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UserEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="UserEditDialog.hide()"/>

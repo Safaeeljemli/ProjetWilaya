@@ -14,8 +14,18 @@
                     <p:panelGrid columns="2" rendered="#{userController.selected != null}">
                         <h:outputText value="#{bundle.ViewUserLabel_login}"/>
                         <h:outputText value="#{userController.selected.login}" title="#{bundle.ViewUserTitle_login}"/>
-                        <h:outputText value="#{bundle.ViewUserLabel_paswrd}"/>
-                        <h:outputText value="#{userController.selected.paswrd}" title="#{bundle.ViewUserTitle_paswrd}"/>
+                        <h:outputText value="#{bundle.ViewUserLabel_passwrd}"/>
+                        <h:outputText value="#{userController.selected.passwrd}" title="#{bundle.ViewUserTitle_passwrd}"/>
+                        <h:outputText value="#{bundle.ViewUserLabel_nom}"/>
+                        <h:outputText value="#{userController.selected.nom}" title="#{bundle.ViewUserTitle_nom}"/>
+                        <h:outputText value="#{bundle.ViewUserLabel_prenom}"/>
+                        <h:outputText value="#{userController.selected.prenom}" title="#{bundle.ViewUserTitle_prenom}"/>
+                        <h:outputText value="#{bundle.ViewUserLabel_email}"/>
+                        <h:outputText value="#{userController.selected.email}" title="#{bundle.ViewUserTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewUserLabel_tel}"/>
+                        <h:outputText value="#{userController.selected.tel}" title="#{bundle.ViewUserTitle_tel}"/>
+                        <h:outputText value="#{bundle.ViewUserLabel_nbrCnx}"/>
+                        <h:outputText value="#{userController.selected.nbrCnx}" title="#{bundle.ViewUserTitle_nbrCnx}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="UserViewDialog.hide()"/>
                 </h:panelGroup>
