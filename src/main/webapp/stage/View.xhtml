@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StageViewDlg" widgetVar="StageViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewStageTitle}">
+            <h:form id="StageViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{stageController.selected != null}">
+                        <h:outputText value="#{bundle.ViewStageLabel_id}"/>
+                        <h:outputText value="#{stageController.selected.id}" title="#{bundle.ViewStageTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewStageLabel_typeStage}"/>
+                        <h:outputText value="#{stageController.selected.typeStage}" title="#{bundle.ViewStageTitle_typeStage}"/>
+                        <h:outputText value="#{bundle.ViewStageLabel_dep}"/>
+                        <h:outputText value="#{stageController.selected.dep}" title="#{bundle.ViewStageTitle_dep}"/>
+                        <h:outputText value="#{bundle.ViewStageLabel_responsable}"/>
+                        <h:outputText value="#{stageController.selected.responsable}" title="#{bundle.ViewStageTitle_responsable}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="StageViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

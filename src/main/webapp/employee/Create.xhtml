@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmployeeCreateDlg" widgetVar="EmployeeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEmployeeTitle}">
+            <h:form id="EmployeeCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{employeeController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{employeeController.selected.nom}" title="#{bundle.CreateEmployeeTitle_nom}" />
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_numPoste}" for="numPoste" />
+                        <p:inputText id="numPoste" value="#{employeeController.selected.numPoste}" title="#{bundle.CreateEmployeeTitle_numPoste}" />
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{employeeController.selected.prenom}" title="#{bundle.CreateEmployeeTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_cin}" for="cin" />
+                        <p:inputText id="cin" value="#{employeeController.selected.cin}" title="#{bundle.CreateEmployeeTitle_cin}" />
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_typeEmployee}" for="typeEmployee" />
+                        <p:inputText id="typeEmployee" value="#{employeeController.selected.typeEmployee}" title="#{bundle.CreateEmployeeTitle_typeEmployee}" />
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_mail}" for="mail" />
+                        <p:inputText id="mail" value="#{employeeController.selected.mail}" title="#{bundle.CreateEmployeeTitle_mail}" />
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_numTel}" for="numTel" />
+                        <p:inputText id="numTel" value="#{employeeController.selected.numTel}" title="#{bundle.CreateEmployeeTitle_numTel}" />
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_departement}" for="departement" />
+                        <p:selectOneMenu id="departement" value="#{employeeController.selected.departement}" >
+                            <f:selectItems value="#{departementController.itemsAvailableSelectOne}"
+                                           var="departementItem"
+                                           itemValue="#{departementItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{employeeController.selected.id}" title="#{bundle.CreateEmployeeTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{employeeController.create}" value="#{bundle.Save}" update="display,:EmployeeListForm:datalist,:growl" oncomplete="handleSubmit(args,'EmployeeCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EmployeeCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

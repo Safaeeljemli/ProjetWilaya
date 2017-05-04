@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StagiaireCreateDlg" widgetVar="StagiaireCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateStagiaireTitle}">
+            <h:form id="StagiaireCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{stagiaireController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateStagiaireLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{stagiaireController.selected.nom}" title="#{bundle.CreateStagiaireTitle_nom}" />
+                        <p:outputLabel value="#{bundle.CreateStagiaireLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{stagiaireController.selected.prenom}" title="#{bundle.CreateStagiaireTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.CreateStagiaireLabel_cin}" for="cin" />
+                        <p:inputText id="cin" value="#{stagiaireController.selected.cin}" title="#{bundle.CreateStagiaireTitle_cin}" />
+                        <p:outputLabel value="#{bundle.CreateStagiaireLabel_mail}" for="mail" />
+                        <p:inputText id="mail" value="#{stagiaireController.selected.mail}" title="#{bundle.CreateStagiaireTitle_mail}" />
+                        <p:outputLabel value="#{bundle.CreateStagiaireLabel_numTel}" for="numTel" />
+                        <p:inputText id="numTel" value="#{stagiaireController.selected.numTel}" title="#{bundle.CreateStagiaireTitle_numTel}" />
+                        <p:outputLabel value="#{bundle.CreateStagiaireLabel_dateDebut}" for="dateDebut" />
+                        <p:calendar id="dateDebut" pattern="MM/dd/yyyy" value="#{stagiaireController.selected.dateDebut}" title="#{bundle.EditStagiaireTitle_dateDebut}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateStagiaireLabel_dateFin}" for="dateFin" />
+                        <p:calendar id="dateFin" pattern="MM/dd/yyyy" value="#{stagiaireController.selected.dateFin}" title="#{bundle.EditStagiaireTitle_dateFin}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateStagiaireLabel_ecoleStagiaire}" for="ecoleStagiaire" />
+                        <p:selectOneMenu id="ecoleStagiaire" value="#{stagiaireController.selected.ecoleStagiaire}" >
+                            <f:selectItems value="#{ecoleController.itemsAvailableSelectOne}"
+                                           var="ecoleStagiaireItem"
+                                           itemValue="#{ecoleStagiaireItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateStagiaireLabel_domaine}" for="domaine" />
+                        <p:selectOneMenu id="domaine" value="#{stagiaireController.selected.domaine}" >
+                            <f:selectItems value="#{domaineController.itemsAvailableSelectOne}"
+                                           var="domaineItem"
+                                           itemValue="#{domaineItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateStagiaireLabel_encadrant}" for="encadrant" />
+                        <p:selectOneMenu id="encadrant" value="#{stagiaireController.selected.encadrant}" >
+                            <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
+                                           var="encadrantItem"
+                                           itemValue="#{encadrantItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateStagiaireLabel_stage}" for="stage" />
+                        <p:selectOneMenu id="stage" value="#{stagiaireController.selected.stage}" >
+                            <f:selectItems value="#{stageController.itemsAvailableSelectOne}"
+                                           var="stageItem"
+                                           itemValue="#{stageItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateStagiaireLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{stagiaireController.selected.id}" title="#{bundle.CreateStagiaireTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{stagiaireController.create}" value="#{bundle.Save}" update="display,:StagiaireListForm:datalist,:growl" oncomplete="handleSubmit(args,'StagiaireCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="StagiaireCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

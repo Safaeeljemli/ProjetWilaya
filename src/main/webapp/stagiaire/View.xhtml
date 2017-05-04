@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StagiaireViewDlg" widgetVar="StagiaireViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewStagiaireTitle}">
+            <h:form id="StagiaireViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{stagiaireController.selected != null}">
+                        <h:outputText value="#{bundle.ViewStagiaireLabel_nom}"/>
+                        <h:outputText value="#{stagiaireController.selected.nom}" title="#{bundle.ViewStagiaireTitle_nom}"/>
+                        <h:outputText value="#{bundle.ViewStagiaireLabel_prenom}"/>
+                        <h:outputText value="#{stagiaireController.selected.prenom}" title="#{bundle.ViewStagiaireTitle_prenom}"/>
+                        <h:outputText value="#{bundle.ViewStagiaireLabel_cin}"/>
+                        <h:outputText value="#{stagiaireController.selected.cin}" title="#{bundle.ViewStagiaireTitle_cin}"/>
+                        <h:outputText value="#{bundle.ViewStagiaireLabel_mail}"/>
+                        <h:outputText value="#{stagiaireController.selected.mail}" title="#{bundle.ViewStagiaireTitle_mail}"/>
+                        <h:outputText value="#{bundle.ViewStagiaireLabel_numTel}"/>
+                        <h:outputText value="#{stagiaireController.selected.numTel}" title="#{bundle.ViewStagiaireTitle_numTel}"/>
+                        <h:outputText value="#{bundle.ViewStagiaireLabel_dateDebut}"/>
+                        <h:outputText value="#{stagiaireController.selected.dateDebut}" title="#{bundle.ViewStagiaireTitle_dateDebut}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewStagiaireLabel_dateFin}"/>
+                        <h:outputText value="#{stagiaireController.selected.dateFin}" title="#{bundle.ViewStagiaireTitle_dateFin}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewStagiaireLabel_ecoleStagiaire}"/>
+                        <h:outputText value="#{stagiaireController.selected.ecoleStagiaire}" title="#{bundle.ViewStagiaireTitle_ecoleStagiaire}"/>
+                        <h:outputText value="#{bundle.ViewStagiaireLabel_domaine}"/>
+                        <h:outputText value="#{stagiaireController.selected.domaine}" title="#{bundle.ViewStagiaireTitle_domaine}"/>
+                        <h:outputText value="#{bundle.ViewStagiaireLabel_encadrant}"/>
+                        <h:outputText value="#{stagiaireController.selected.encadrant}" title="#{bundle.ViewStagiaireTitle_encadrant}"/>
+                        <h:outputText value="#{bundle.ViewStagiaireLabel_stage}"/>
+                        <h:outputText value="#{stagiaireController.selected.stage}" title="#{bundle.ViewStagiaireTitle_stage}"/>
+                        <h:outputText value="#{bundle.ViewStagiaireLabel_id}"/>
+                        <h:outputText value="#{stagiaireController.selected.id}" title="#{bundle.ViewStagiaireTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="StagiaireViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

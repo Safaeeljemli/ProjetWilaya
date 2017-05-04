@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EchelleViewDlg" widgetVar="EchelleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEchelleTitle}">
+            <h:form id="EchelleViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{echelleController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEchelleLabel_id}"/>
+                        <h:outputText value="#{echelleController.selected.id}" title="#{bundle.ViewEchelleTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EchelleViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
