@@ -1,11 +1,15 @@
 package controller;
 
+import bean.Ecole;
+import bean.Employee;
 import bean.Stagiaire;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
 import service.StagiaireFacade;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -25,12 +29,84 @@ public class StagiaireController implements Serializable {
 
     @EJB
     private service.StagiaireFacade ejbFacade;
-    private List<Stagiaire> items = null;
+    @EJB
+    private service.EmployeeFacade employeeFacade;
+    private List<Stagiaire> items ;
     private Stagiaire selected;
-
+ //recherche Stagiaire
+    private int typeStage;
+    private Ecole ecole;
+    private LocalDateTime dateDebut;
+    private LocalDateTime dateFin;
+    private Employee encadrant;
     public StagiaireController() {
     }
+//recherche dial Stagiaire
+     public void findStagiaire() {
+        System.out.println(":: search :: ");
+        items = getFacade().findStagiaire(typeStage, ecole, dateDebut, dateFin, encadrant);
+        if (items == null) {
+            JsfUtil.addSuccessMessage("No Data Found");
+            System.out.println("items null");
+        }else{
+            JsfUtil.addSuccessMessage("successe");
+            System.out.println("success");
+        }
+    }
+     //getter and setter
+ public List<Stagiaire> getEcolesAvailableSelectOne() {
+        return ejbFacade.findAll();
+    }
+ 
+    public List<Employee> findEncadrent(){
+        return employeeFacade.findEncadrent();
+    }
+    public int getTypeStage() {
+        return typeStage;
+    }
 
+    public void setTypeStage(int typeStage) {
+        this.typeStage = typeStage;
+    }
+
+    public Ecole getEcole() {
+        if(ecole==null){
+            ecole=new Ecole();
+        }
+        return ecole;
+    }
+
+    public void setEcole(Ecole ecole) {
+        this.ecole = ecole;
+    }
+
+    public LocalDateTime getDateDebut() {
+        return dateDebut;
+    }
+
+    public void setDateDebut(LocalDateTime dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public LocalDateTime getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(LocalDateTime dateFin) {
+        this.dateFin = dateFin;
+    }
+
+    public Employee getEncadrant() {
+        if(encadrant==null){
+            encadrant=new Employee();
+        }
+        return encadrant;
+    }
+
+    public void setEncadrant(Employee encadrant) {
+        this.encadrant = encadrant;
+    }
+     
     public Stagiaire getSelected() {
         return selected;
     }

@@ -6,6 +6,8 @@
 package service;
 
 import bean.Employee;
+import controller.util.SearchUtil;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +30,9 @@ public class EmployeeFacade extends AbstractFacade<Employee> {
     public EmployeeFacade() {
         super(Employee.class);
     }
-    
+    public List<Employee> findEncadrent() {
+       String  query="SELECT em FROM Employee em WHERE 1=1";
+       query+=SearchUtil.addConstraint("em", "typeEmployee", "=", 2);
+        return em.createQuery(query).getResultList();
+    }
 }
