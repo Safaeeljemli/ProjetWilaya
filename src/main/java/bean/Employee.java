@@ -29,7 +29,7 @@ public class Employee implements Serializable {
     private String nom;
     private String prenom;
     private String cin;
-    private int typeEmployee;//1=chefDep  2=encadrantSta 3=personnel 4=ResponsableStage
+    private int typeEmployee;//1=chefDep   2=personnel 
     private String mail;
     private Long numTel;
     private int numPoste;

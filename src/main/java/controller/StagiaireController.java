@@ -1,5 +1,6 @@
 package controller;
 
+import bean.Departement;
 import bean.Ecole;
 import bean.Employee;
 import bean.Stagiaire;
@@ -9,7 +10,7 @@ import service.StagiaireFacade;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -30,37 +31,58 @@ public class StagiaireController implements Serializable {
     @EJB
     private service.StagiaireFacade ejbFacade;
     @EJB
+    private service.EcoleFacade ecoleFacade;
+    @EJB
+    private service.DepartementFacade depatementFacade;
+    @EJB
     private service.EmployeeFacade employeeFacade;
-    private List<Stagiaire> items ;
+
+    private List<Stagiaire> items;
+    private List<Departement> departements = null;
     private Stagiaire selected;
- //recherche Stagiaire
+    //recherche Stagiaire
     private int typeStage;
     private Ecole ecole;
     private LocalDateTime dateDebut;
     private LocalDateTime dateFin;
     private Employee encadrant;
+    private Departement thisDepartement;
+
     public StagiaireController() {
     }
-//recherche dial Stagiaire
-     public void findStagiaire() {
-        System.out.println(":: search :: ");
-        items = getFacade().findStagiaire(typeStage, ecole, dateDebut, dateFin, encadrant);
-        if (items == null) {
-            JsfUtil.addSuccessMessage("No Data Found");
-            System.out.println("items null");
-        }else{
-            JsfUtil.addSuccessMessage("successe");
-            System.out.println("success");
+
+    //getter and setter
+
+  
+
+    public List<Ecole> getEcolesAvailableSelectOne() {
+        return ecoleFacade.findAll();
+
+    }
+
+    public Departement getThisDepartement() {
+        if (thisDepartement == null) {
+            thisDepartement = new Departement();
+        }
+        return thisDepartement;
+    }
+
+    public void setThisDepartement(Departement thisDepartement) {
+        this.thisDepartement = thisDepartement;
+    }
+
+    public void findEncadrentByDepartement() {
+        try {
+            getThisDepartement().setEmployees(employeeFacade.findEncadrentByDepartement(thisDepartement));
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage("veiller choisire une departement");
         }
     }
-     //getter and setter
- public List<Stagiaire> getEcolesAvailableSelectOne() {
-        return ejbFacade.findAll();
+
+    public List<Departement> findDepartement() {
+        return depatementFacade.findAll();
     }
- 
-    public List<Employee> findEncadrent(){
-        return employeeFacade.findEncadrent();
-    }
+
     public int getTypeStage() {
         return typeStage;
     }
@@ -70,8 +92,8 @@ public class StagiaireController implements Serializable {
     }
 
     public Ecole getEcole() {
-        if(ecole==null){
-            ecole=new Ecole();
+        if (ecole == null) {
+            ecole = new Ecole();
         }
         return ecole;
     }
@@ -97,8 +119,8 @@ public class StagiaireController implements Serializable {
     }
 
     public Employee getEncadrant() {
-        if(encadrant==null){
-            encadrant=new Employee();
+        if (encadrant == null) {
+            encadrant = new Employee();
         }
         return encadrant;
     }
@@ -106,8 +128,11 @@ public class StagiaireController implements Serializable {
     public void setEncadrant(Employee encadrant) {
         this.encadrant = encadrant;
     }
-     
+
     public Stagiaire getSelected() {
+        if(selected== null){
+            selected= new Stagiaire();
+        }
         return selected;
     }
 
@@ -125,12 +150,30 @@ public class StagiaireController implements Serializable {
         return ejbFacade;
     }
 
+    // methodes****
+    
+    
+    //recherche dial Stagiaire
+
+    public void findStagiaire() {
+        System.out.println(":: search :: ");
+        items = getFacade().findStagiaire(typeStage, ecole, dateDebut, dateFin, encadrant);
+        if (items == null) {
+            JsfUtil.addSuccessMessage("No Data Found");
+            System.out.println("items null");
+        } else {
+            JsfUtil.addSuccessMessage("successe");
+            System.out.println("success");
+        }
+    }
+    
     public Stagiaire prepareCreate() {
         selected = new Stagiaire();
         initializeEmbeddableKey();
         return selected;
     }
 
+   
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("StagiaireCreated"));
         if (!JsfUtil.isValidationFailed()) {
